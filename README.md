@@ -1,21 +1,23 @@
 # ECG Anomaly Detection via LSTM Autoencoders
-**Research Project | MIT-BIH Arrhythmia Database**
+**Principal Researcher:** Adhyan Rajiv Gupta
+**Institution:** SVVDJ ECE 2028
+**Database:** MIT-BIH Arrhythmia Database (Record 100)
 
 ## Technical Summary
-* **Training Convergence:** The model reached a stable Mean Absolute Error (MAE) of ~0.047 after 20 epochs.
-* **Anomaly Detection:** Successfully identified Ventricular Ectopic Beats (V-beats) by flagging high reconstruction errors compared to normal R-peaks.
-* **System Environment:** Developed and tested on Apple Silicon (M-series) using TensorFlow's Metal acceleration.
+* **Training Convergence:** The model achieved a stable Mean Absolute Error (MAE) of ~0.047 after 20 epochs.
+* **Anomaly Detection:** Successfully identified Ventricular Ectopic Beats (V-beats) by analyzing reconstruction error deviations relative to learned normal R-peaks.
+* **Hardware Environment:** Implemented on Apple Silicon (M-series) using TensorFlow's Metal-accelerated backend.
 
 ## Implementation Phases
-1. **Signal Processing:** 3rd-order Butterworth filtering to remove 0.5Hz-45Hz noise.
-2. **Dataset Architecture:** Segmented Lead II signals into 180-sample windows.
-3. **Deep Learning:** Unsupervised LSTM Autoencoder (49,985 parameters).
-4. **Validation:** Detection based on Reconstruction Error thresholds.
+1. **Signal Conditioning:** Applied a 3rd-order Butterworth bandpass filter (0.5Hz–45Hz) to attenuate baseline wander and power-line interference.
+2. **Segmentation:** Lead II signals were windowed into 180-sample segments centered on the R-peak.
+3. **Architecture:** Unsupervised LSTM Autoencoder comprising 49,985 trainable parameters.
+4. **Logic:** Detection criteria established via reconstruction error thresholds (MAE).
 
-## Visualizations
-* **Training Curve:** `training_progress.png` shows smooth learning without overfitting.
-* **Detection Result:** `final_detection_result.png` compares healthy vs. anomalous reconstruction.
+## Research Visualizations
+* [Training Loss Plot](training_progress.png) — Illustrates model convergence and validation tracking.
+* [Detection Result Analysis](final_detection_result.png) — Comparative reconstruction of healthy vs. pathological heartbeats.
 
 ## Engineering Observations
-* Selected a 3rd-order Butterworth filter over higher orders to minimize phase distortion while maintaining sufficient noise attenuation.
-* Observed that model stability improved significantly when normalizing signal amplitudes to a [0, 1] range prior to windowing.
+* **Filter Selection:** Utilized a 3rd-order Butterworth filter to balance noise attenuation with phase response preservation; higher-order filters introduced excessive distortion.
+* **Stability:** Normalizing signal amplitudes to a [0, 1] range was found to be critical for preventing vanishing gradients during the LSTM training phase.
