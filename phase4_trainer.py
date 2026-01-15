@@ -31,7 +31,7 @@ history = model.fit(
     verbose=1
 )
 
-# 4. Save the trained model
+# 4. Save the trained model . 
 model.save('ecg_autoencoder.h5')
 print("\n✅ SUCCESS: Model saved as 'ecg_autoencoder.h5'")
 
