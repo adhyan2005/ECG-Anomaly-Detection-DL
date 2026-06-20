@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 # 1. Load the preprocessed data (Normal beats only)
 print("Loading preprocessed heartbeats...")
-X_train = np.load('X_normal.npy')
+X_train = np.load('X_train_normal.npy')
 
 # 2. Build the LSTM Autoencoder
 model = Sequential([
